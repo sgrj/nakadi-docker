@@ -1,4 +1,4 @@
-FROM openjdk:8u171-jdk-stretch as builder
+FROM openjdk:8u312-jdk-buster as builder
 
 MAINTAINER andrey.dyachkov@gmail.com
 
@@ -11,7 +11,7 @@ RUN cp nakadi-authz-file-plugin-0.2.jar plugins/nakadi-authz-file-plugin-0.2.jar
 RUN chmod u+x gradlew
 RUN ./gradlew assemble
 
-FROM openjdk:8u171-jdk-alpine3.7
+FROM openjdk:8u312-jre-slim
 
 # configure Nakadi
 COPY --from=builder /tmp/build/libs/nakadi.jar .
